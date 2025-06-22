@@ -1,8 +1,5 @@
 # alx-project-0x14
-<<<<<<< HEAD
-=======
 
->>>>>>> ccd1174c793cb9d0fecf588f67a26c381491ab6a
 ## API Overview
 CineSeek is a modern movie discovery application built with Next.js, TypeScript, and Tailwind CSS. The application allows users to browse movies from the MoviesDatabase API, view movie details, and search for films by year or genre. The project focuses on creating a responsive, well-structured web application with proper API integration and TypeScript typing
 
@@ -10,124 +7,78 @@ CineSeek is a modern movie discovery application built with Next.js, TypeScript,
 V1
 
 ======
-## Available Endpoints
-Titles
-Query parameters and model are explain below, in 'Description Of Optionals Query Parameters' and 'Description Of The Information (Models)'
-
-Titles - Multiple:
-path: /titles
-description: returns array of titles according to filters / sorting query parameters provided
-query parameters: multiple, unique query parameter 'list' that sets the collection you want to query - options available in Utils - Titles Lists
-model: title
-
-Titles - By List of Id's:
-path: /x/titles-by-ids
-description: returns array of titles according to array of id's provided
-query parameters: - info - list ( unique query parameter that sets the collection you want to query) - options available in Utils - Titles Lists - idsList ( the list of id's, must be an array of strings)
-model: title
-
-Title
-path: /titles/{id}
-path parameter (required) : id -> imdb id of title
-description: returns title acording to filters / sorting query parameters provided
-query parameters: info
-model: title
-
-Title Rating
-path: /titles/{id}/ratings
-path parameter (required) : id -> imdb id of title
-description: returns title rating and votes number
-query parameters: -
-model: rating
-
-Seasons and Episodes
-path: /titles/series/{id}
-path parameter (required) : id -> imdb id of series
-description: returns array of episodes only with episode id, episode number and season number in ascending order
-query parameters: -
-model: light episode
-
-Seasons Number
-path: /titles/seasons/{id}
-path parameter (required) : id -> imdb id of series
-description: returns number of seasons for the series (integer)
-query parameters: -
-Episodes Id`s By Series Id and Season
-path: /titles/series/{id}/{season}
-path parameter (required) : id -> imdb id of series, season -> season number
-description: returns array of episodes only with episode id, season number and episode number (only of the season provided in path)
-query parameters: -
-model: light episode
-
-Episode
-path: /titles/episode/{id}
-path parameter (required) : id -> imdb id of episode
-description: returns episode according to filters / sorting query parameters provided
-query parameters: info
-model: title
-
-Upcoming Titles
-path: /titles/x/upcoming
-description: returns array of upcoming titles according to filters / sorting query parameters provided
-query parameters: multiple
-model: title
-
-Search
-Titles by Keyword
-path: /titles/search/keyword/{keyword}
-path parameter (required) : keyword
-description: returns array of titles according to filters / sorting query parameters provided and the keyword provided in path
-query parameters: multiple
-model: title
-
-Titles by Title
-path: /titles/search/title/{title}
-path parameter (required) : title -> a title or part of a title
-description: returns array of titles according to filters / sorting query parameters provided and the title provided in path
-query parameters: *multiple, uniq query parameter exact that sets the looku to be exact default : false
-model: title
-
-Titles by Aka's
-path: /titles/search/akas/{aka}
-path parameter (required) :aka -> a aka of a title ( exact only and case sensitive )
-description: returns array of titles according to filters / sorting query parameters provided and the aka provided in path, work only for exact matches
-query parameters: multiple
-model: title
-
-Actors
-Actors
-path: /actors
-description: returns array of actors according to filters provided
-query parameters: limit, page
-model: actor
-
-Actor By Id
-path: /actors/{id}
-path parameter (required) : imdb id of actor
-description: returns actor details
-model: actor
-
-Utils
-Title Type
-path: /title/utils/titleType
-description: returs array of title types
-
-Genres
-path: /title/utils/titleType
-description: returs array of genres
-
-Titles Lists
-path: /title/utils/lists
-description: returns array of lists (for 'list' query parameter)
+Available Endpoints
+Method	Endpoint	Description
+GET	/titles	Retrieve a list of movie and show titles.
+GET	/titles/{id}	Get detailed information about a specific title.
+GET	/titles/{id}/ratings	Get ratings for a specific title.
+GET	/titles/{id}/aka	Get alternative titles (AKAs) for a specific title.
+GET	/titles/{id}/crew	Retrieve crew information for a specific title.
+GET	/titles/{id}/main_actor	Retrieve the main actor for a specific title.
+GET	/titles/series/{seriesId}	Get all seasons for a given series.
+GET	/titles/seasons/{seriesId}	List all available seasons for a series.
+GET	/titles/series/{seriesId}/{season}	Get episodes for a specific season of a series.
+GET	/titles/episode/{id}	Get information for a specific episode.
+GET	/titles/search/title/{title}	Search for titles by name.
+GET	/titles/search/akas/{aka}	Search for titles by an alternative name.
+GET	/titles/search/keyword/{keyword}	Search for titles by keyword.
+GET	/titles/x/upcoming	Retrieve a list of upcoming titles.
+GET	/titles/random	Get a random movie or show title.
+GET	/titles/x/titles-by-ids	Fetch multiple titles by their IDs.
+GET	/titles/utils/genres	Get a list of available genres.
+GET	/titles/utils/titleTypes	Get a list of title types (e.g., movie, TV show).
+GET	/titles/utils/lists	Retrieve curated lists of titles.
+GET	/actors/{id}	Get details about a specific actor.
+GET	/actors/random	Get a random actor profile.
+GET	/actor	Get a list of actors.
+GET	Search by imdb id	Search for a title using its IMDb ID.
 
 ## Request and Response Format
+### Request
+You must include your X-RapidApi-Key, X-nd Rapidapi-Host and Host in the headers.
 
-## Authentication 
+### Example Request:
 
-## Error Handling 
+GET /titles/series/%7BseriesId%7D HTTP/1.1
+X-Rapidapi-Key: YOUR_API_KEY
+X-Rapidapi-Host: moviesdatabase.p.rapidapi.com
+Host: moviesdatabase.p.rapidapi.com
 
-## Usage Limits and Best Practices
+### Response
+Responses are in JSON format.
 
+Example Response:
 
+{
+  "results": [
+    {
+      "id": "tt1375666",
+      "title": "Inception",
+      "year": 2010,
+      "genres": ["Action", "Sci-Fi", "Thriller"]
+    }
+  ]
+}
 
->>>>>>> ccd1174c793cb9d0fecf588f67a26c381491ab6a
+## Authentication
+Required Headers
+
+X-RapidAPI-Key: YOUR_API_KEY X-RapidAPI-Host: moviesdatabase.p.rapidapi.com
+
+## Error Handling
+The MoviesDatabase API follows standard HTTP status codes to indicate success or failure of requests. Handling errors correctly ensures a more reliable and user-friendly application.
+
+## Common Error Codes
+Status Code	Description	How to Handle
+400 Bad Request	The request is malformed or missing required parameters.	Validate request data before sending.
+401 Unauthorized	Missing or invalid API key.	Ensure your API key is correct and included in headers.
+403 Forbidden	You don’t have permission to access the requested resource.	Check your RapidAPI subscription and endpoint access.
+404 Not Found	The requested resource does not exist.	Inform the user that the resource was not found.
+429 Too Many Requests	You have exceeded your usage quota or rate limits.	Implement exponential backoff or wait before retrying.
+500 Internal Server Error	A server-side error occurred.	Retry the request later or show a friendly error message.
+
+## Example Error Response
+{
+  "message": "You have exceeded your rate limit"
+}
+Usage Limits and Best Practices
