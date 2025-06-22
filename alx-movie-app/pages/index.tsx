@@ -1,4 +1,4 @@
-import Button from "../components/common/Button";
+import Button from "../components/commons/Button";
 // useRouter() is a hook provided by Next.js that lets you interact with the current page route.
 import { useRouter } from "next/router";
 const Home: React.FC = () => {
